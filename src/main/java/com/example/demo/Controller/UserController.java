@@ -54,34 +54,34 @@ public class UserController {
 
     @PutMapping("/update/{idUser}")
     public BaseResponseDto<?> updateUser(@RequestBody UserDto dto, @PathVariable int idUser) {
-        return this.baseControll.getInstance().successResponse(Constants.SUCCESS_MESSAGE, this.userServiceImpl.updateUser(dto, idUser));
+        return BaseControll.getInstance().successResponse(Constants.SUCCESS_MESSAGE, this.userServiceImpl.updateUser(dto, idUser));
     }
 
     @GetMapping("/getall")
     public BaseResponseDto<?> getAllUser() {
-        return this.baseControll.getInstance().successResponse(Constants.SUCCESS_MESSAGE, this.userServiceImpl.getAllUser());
+        return BaseControll.getInstance().successResponse(Constants.SUCCESS_MESSAGE, this.userServiceImpl.getAllUser());
     }
 
     @GetMapping("/GetAllByLevel/{level}")
     public BaseResponseDto<?> getAllUserBylevel(@PathVariable int level) {
-        return this.baseControll.getInstance().successResponse(Constants.SUCCESS_MESSAGE, this.userServiceImpl.getAllUserByLevel(level));
+        return BaseControll.getInstance().successResponse(Constants.SUCCESS_MESSAGE, this.userServiceImpl.getAllUserByLevel(level));
     }
 
     @GetMapping("GetAllUserByName/{name}")
     public BaseResponseDto<?> getAllUserByName(@PathVariable String name) {
         UserDto user = this.userServiceImpl.findUserByUserName(name);
         if (user != null) {
-            return this.baseControll.getInstance().successResponse(Constants.SUCCESS_MESSAGE, user);
+            return BaseControll.getInstance().successResponse(Constants.SUCCESS_MESSAGE, user);
         }
-        return this.baseControll.getInstance().errorResponse(Constants.ERROR_CODE, Constants.SERVER_ERROR_MESSAGE);
+        return BaseControll.getInstance().errorResponse(Constants.ERROR_CODE, Constants.SERVER_ERROR_MESSAGE);
     }
 
     @GetMapping("/getUserById/{id}")
     private BaseResponseDto<?> getUserById(@PathVariable int id) {
         UserDto userDto = this.userServiceImpl.getUserById(id);
         if (userDto != null) {
-            return this.baseControll.getInstance().successResponse(Constants.SUCCESS_MESSAGE, userDto);
+            return BaseControll.getInstance().successResponse(Constants.SUCCESS_MESSAGE, userDto);
         }
-        return this.baseControll.getInstance().errorResponse(Constants.ERROR_CODE, Constants.ERROR_MESSAGE);
+        return BaseControll.getInstance().errorResponse(Constants.ERROR_CODE, Constants.ERROR_MESSAGE);
     }
 }
